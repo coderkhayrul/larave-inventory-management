@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -52,7 +51,8 @@
                                 </a>
                             </div>
                             <div class="p-2">
-                                <form class="needs-validation" novalidate action="{{ route('register') }}" method="post">
+                                <form class="needs-validation" novalidate action="{{ route('register') }}"
+                                    method="post">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>

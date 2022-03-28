@@ -116,6 +116,7 @@
                                     </div>
                                 </a>
                             </div>
+                            {{-- Login Validation --}}
                             @if($errors->any())
                                 <div class="alert alert-danger">
                                     <p><strong>Opps Something went wrong</strong></p>
@@ -126,6 +127,7 @@
                                     </ul>
                                 </div>
                             @endif
+                            {{-- Login Validation End --}}
                             <div class="p-2">
                                 <form class="form-horizontal" action="{{ route('login') }}" method="POST">
                                     @csrf
@@ -197,7 +199,7 @@
                     <div class="mt-5 text-center">
 
                         <div>
-                            <p>Don't have an account ? <a href="auth-register.html" class="fw-medium text-primary">
+                            <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
                                     Signup now </a> </p>
                             <p>© <script>
                                     document.write(new Date().getFullYear())
