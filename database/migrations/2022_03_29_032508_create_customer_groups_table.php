@@ -14,7 +14,11 @@ class CreateCustomerGroupsTable extends Migration
     public function up()
     {
         Schema::create('customer_groups', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('cg_id');
+            $table->string('cg_name', 50)->unique();
+            $table->text('cg_remarks');
+            $table->string('cg_slug');
+            $table->integer('cg_status')->default(1);
             $table->timestamps();
         });
     }
