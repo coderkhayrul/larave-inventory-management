@@ -21,13 +21,13 @@
                         <span key="t-ecommerce">Product</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" >Category</a></li>
-                        <li><a href="#" >Product List</a></li>
-                        <li><a href="#" >Add Product</a></li>
-                        <li><a href="#" >Print Barcode</a></li>
-                        <li><a href="#" >Adjustment List</a></li>
-                        <li><a href="#" >Add Adjustment</a></li>
-                        <li><a href="#" >Stock Count</a></li>
+                        <li><a href="#">Category</a></li>
+                        <li><a href="#">Product List</a></li>
+                        <li><a href="#">Add Product</a></li>
+                        <li><a href="#">Print Barcode</a></li>
+                        <li><a href="#">Adjustment List</a></li>
+                        <li><a href="#">Add Adjustment</a></li>
+                        <li><a href="#">Stock Count</a></li>
                     </ul>
                 </li>
                 <li>
@@ -36,9 +36,9 @@
                         <span key="t-purchase">Purchase</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" >Purchase List</a></li>
-                        <li><a href="#" >Add Purchase</a></li>
-                        <li><a href="#" >Import Purchase By CSV</a></li>
+                        <li><a href="#">Purchase List</a></li>
+                        <li><a href="#">Add Purchase</a></li>
+                        <li><a href="#">Import Purchase By CSV</a></li>
 
                     </ul>
                 </li>
@@ -48,12 +48,12 @@
                         <span key="t-purchase">Sale</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" >Sell List</a></li>
-                        <li><a href="#" >POS</a></li>
-                        <li><a href="#" >Import Sell By CSV</a></li>
-                        <li><a href="#" >Gift Card List</a></li>
-                        <li><a href="#" >Coupon List</a></li>
-                        <li><a href="#" >Delivery List</a></li>
+                        <li><a href="#">Sell List</a></li>
+                        <li><a href="#">POS</a></li>
+                        <li><a href="#">Import Sell By CSV</a></li>
+                        <li><a href="#">Gift Card List</a></li>
+                        <li><a href="#">Coupon List</a></li>
+                        <li><a href="#">Delivery List</a></li>
 
                     </ul>
                 </li>
@@ -202,7 +202,8 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('logout') }}"  onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                         <i class="bx bx-log-in-circle text-danger"></i>
                         <span key="t-dashboards">Logout</span>
                     </a>
