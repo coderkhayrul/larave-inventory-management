@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header bg-dark d-flex justify-content-between">
                             <h4 class="card-text pt-1 mb-0 text-light"><i class="dripicons-user-group"></i> All User List</h4>
-                            <a href="{{ route('user.create') }}" class="btn btn-primary">Add User</a>
+                            <a href="{{ route('user.create') }}" class="btn btn-primary"><i class="bx bx-user-plus"></i> Add User</a>
                         </div>
                         <div class="card-body">
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
