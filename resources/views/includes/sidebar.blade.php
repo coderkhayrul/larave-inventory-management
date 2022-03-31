@@ -136,7 +136,7 @@
                         <span key="t-return">People</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">User List</a></li>
+                        <li><a href="{{ route('user.index') }}">User List</a></li>
                         <li><a href="#">Add User</a></li>
                         <li><a href="#">Customer List</a></li>
                         <li><a href="#">Add Customer</a></li>
