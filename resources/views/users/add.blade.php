@@ -34,7 +34,7 @@
                         <div class="card-body">
                             <p class="italic"><small>The field labels marked with <span class="text-danger">*</span> are required input fields.</small>
                             </p>
-                            <form method="POST" action="{{ route('user.store') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="form-group pb-2">
                                             <label><strong>User Image</strong></label>
-                                            <input  id="user-fileinput" type="file" name="photo" required="" class="form-control">
+                                            <input  id="user-fileinput" type="file" name="photo" class="form-control">
                                         </div>
                                         <div class="form-group pb-2">
                                             <input class="mt-2" type="checkbox" name="active" value="1" checked="">
