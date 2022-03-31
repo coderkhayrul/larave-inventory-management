@@ -21,7 +21,42 @@
 
         <!-- Right bar overlay-->
         {{-- <div class="rightbar-overlay"></div> --}}
+        {{--  NOTIFICATION START --}}
+        <!-- toastr plugin -->
+        <script src="{{ asset('assets') }}/libs/toastr/build/toastr.min.js"></script>
+        <!-- toastr init -->
+        <script src="{{ asset('assets') }}/js/pages/toastr.init.js"></script>
+        <script>
+            @if (Session::has('success'))
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+                toastr.success("{{ session('success') }}");
+            @endif
 
+            @if (Session::has('warning'))
+                toastr.options =
+                {
+                "closeButton" : true,
+                "progressBar" : true
+                }
+                toastr.warning("{{ session('warning') }}");
+            @endif
+        </script>
         <!-- JAVASCRIPT -->
         <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -51,7 +86,9 @@
         <!-- Responsive examples -->
         <script src="{{ asset('assets') }}/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="{{ asset('assets') }}/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
         @yield('custom-script')
+
         <!-- Datatable init js -->
         <script src="{{ asset('assets') }}/js/pages/datatables.init.js"></script>
 

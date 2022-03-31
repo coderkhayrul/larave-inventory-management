@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -34,7 +35,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->all();
+        Session::flash('success', "User Create Successfull");
+        return redirect()->route('user.index');
     }
 
     /**
