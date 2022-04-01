@@ -18,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $allusers = User::where('status', 1)->get();
+        return view('users.index', compact('allusers'));
     }
 
     /**
@@ -69,7 +70,7 @@ class UserController extends Controller
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $imageName = 'user' . time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(500, 500)->save('Uploads/user/' . $imageName);
+            Image::make($image)->resize(500, 500)->save('uploads/user/' . $imageName);
 
             User::where('id', $insert)->update([
                 'photo' => $imageName,
@@ -91,10 +92,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($slug)
+    // {
+
+    //     return view('users.show');
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -102,9 +104,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $data = User::where('slug', $slug)->where('status', 1)->firstOrFail();
+        return view('users.edit', compact('data'));
     }
 
     /**
@@ -114,9 +117,48 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        // return $request->all();
+        $this->validate($request,[
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:50'],
+            'role' => ['required'],
+        ], [
+            'name.required' => 'Please enter username',
+            'phone.required' => 'Please enter phone number',
+            'role.required' => 'Please Select Role',
+        ]);
+
+        $update = User::where('status', 1)->where('slug',$slug)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'role' => $request->role,
+            'active' => $request->active,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        // User Image Upload
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $imageName = 'user' . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(500, 500)->save('uploads/user/' . $imageName);
+
+            User::where('slug', $slug)->update([
+                'photo' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($update) {
+            Session::flash('success', 'User Updated successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'User Update Failed!');
+            return redirect()->back();
+        }
+
     }
 
     /**

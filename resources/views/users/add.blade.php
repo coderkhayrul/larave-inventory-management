@@ -40,17 +40,32 @@
                                     <div class="col-md-6">
                                         <div class="form-group pb-2">
                                             <label><strong>UserName <span class="text-danger">*</span></strong> </label>
-                                            <input type="text" name="name" required="" class="form-control">
+                                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                                            @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group pb-2">
                                             <label><strong>Password <span class="text-danger">*</span></strong> </label>
                                             <div class="input-group">
-                                                <input type="password" name="password" required="" class="form-control">
+                                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}">
+                                                @error('password')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group pb-2">
                                             <label><strong>Phone Number <span class="text-danger">*</span></strong></label>
-                                            <input type="text" name="phone" required="" class="form-control">
+                                            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
+                                            @error('phone')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group pb-2">
                                             <label><strong>User Image</strong></label>
@@ -68,23 +83,33 @@
                                         <div class="form-group pb-2">
                                             <label><strong>Email <span class="text-danger">*</span></strong></label>
                                             <input type="email" name="email" placeholder="example@example.com"
-                                                required="" class="form-control">
+                                                class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group pb-2">
                                             <label><strong>Confirm Password</strong></label>
-                                            <input type="password" name="password_confirmation" class="form-control">
+                                            <input type="password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}">
                                         </div>
                                         <div class="form-group pb-3">
                                             <label><strong>Role <span class="text-danger">*</span></strong></label>
-                                            <select class="form-select" name="role">
+                                            <select class="form-select @error('role') is-invalid @enderror" value="{{ old('role') }}" name="role">
                                                 <option  selected disabled>Select Role</option>
                                                 <option value="1">Admin</option>
                                                 <option value="2">Owner</option>
                                                 <option value="3">customer</option>
                                             </select>
+                                            @error('role')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <img id="preview-image" class="rounded" style="width: 150px; height: 100px" src="{{ asset('Uploads/default_user.png') }}" alt="">
+                                            <img id="preview-image" class="rounded" style="width: 150px; height: 100px" src="{{ asset('uploads/default_user.png') }}" alt="">
                                         </div>
                                     </div>
                                 </div>
