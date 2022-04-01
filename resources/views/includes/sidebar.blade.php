@@ -137,7 +137,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('user.index') }}">User List</a></li>
-                        <li><a href="#">Add User</a></li>
+                        <li><a href="{{ route('user.create') }}">Add User</a></li>
                         <li><a href="#">Customer List</a></li>
                         <li><a href="#">Add Customer</a></li>
                         <li><a href="#">Biller List</a></li>
@@ -184,7 +184,7 @@
                         <li><a href="#">Discount</a></li>
                         <li><a href="#">Send Notification</a></li>
                         <li><a href="#">Warehouse</a></li>
-                        <li><a href="#">Customer Group</a></li>
+                        <li><a href="{{ route('customer.group.index') }}">Customer Group</a></li>
                         <li><a href="#">Brand</a></li>
                         <li><a href="#">Unit</a></li>
                         <li><a href="#">Currency</a></li>

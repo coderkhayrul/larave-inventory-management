@@ -16,7 +16,7 @@ class CreateCustomerGroupsTable extends Migration
         Schema::create('customer_groups', function (Blueprint $table) {
             $table->bigIncrements('cg_id');
             $table->string('cg_name', 50)->unique();
-            $table->text('cg_remarks');
+            $table->text('cg_remarks')->nullable();
             $table->string('cg_slug');
             $table->integer('cg_status')->default(1);
             $table->timestamps();

@@ -26,10 +26,10 @@ class CreateCustomersTable extends Migration
             $table->string('customer_postal', 10)->nullable();
             $table->string('customer_country', 100)->nullable();
             $table->text('customer_remarks')->nullable();
-            $table->integer('customer_creator')->default(1);
+            $table->integer('customer_creator');
             $table->integer('customer_editor')->nullable();
             $table->string('customer_slug')->unique();
-            $table->integer('customer_status')->define(1);
+            $table->integer('customer_status')->default(1);
             $table->timestamps();
         });
     }
