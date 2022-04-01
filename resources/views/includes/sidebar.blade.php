@@ -138,8 +138,8 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('user.index') }}">User List</a></li>
                         <li><a href="{{ route('user.create') }}">Add User</a></li>
-                        <li><a href="#">Customer List</a></li>
-                        <li><a href="#">Add Customer</a></li>
+                        <li><a href="{{ route('customer.index') }}">Customer List</a></li>
+                        <li><a href="{{ route('customer.create') }}">Add Customer</a></li>
                         <li><a href="#">Biller List</a></li>
                         <li><a href="#">Add Biller</a></li>
                         <li><a href="#">Supplier List</a></li>
@@ -159,7 +159,6 @@
                         <li><a href="#">Monthly Sale</a></li>
                         <li><a href="#">Daily Purchase</a></li>
                         <li><a href="#">Monthly Purchase</a></li>
-
                         <li><a href="#">Sale Report</a></li>
                         <li><a href="#">Payment Report</a></li>
                         <li><a href="#">Purchase Report</a></li>

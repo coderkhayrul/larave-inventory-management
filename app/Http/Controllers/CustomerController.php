@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Customer::where('customer_status', 1)->orderBy('customer_id', 'asc')->get();
+        return view('customer.index', compact('datas'));
     }
 
     /**

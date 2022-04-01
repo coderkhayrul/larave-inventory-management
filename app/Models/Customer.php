@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
-    protected $fillabel =[
-        'customer_name'
-    ];
+    protected $guarded =[];
+
+    // Get Customer Group Data
+    public function customerGroup(){
+        return $this->belongsTo(CustomerGroup::class, 'cg_id','customer_id');
+    }
+
 }
