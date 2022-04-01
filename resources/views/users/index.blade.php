@@ -69,11 +69,39 @@
                                                             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" style="">
                                                                 {{-- <a class="dropdown-item text-primary btn-link" href="{{ route('user.show',$data->slug) }}"> <i class="dripicons-preview"></i> Show</a> --}}
                                                                 <a class="dropdown-item text-primary btn-link" href="{{ route('user.edit',$data->slug) }}"> <i class="dripicons-document-edit"></i> Edit</a>
-                                                                <a class="dropdown-item text-primary btn-link" href="{{ route('user.destroy',$data->slug) }}"> <i class="dripicons-trash"></i> Delete</a>
+                                                                <a class="dropdown-item text-primary btn-link delete-modal"
+                                                                href="{{ route('user.destroy',$data->slug) }}"
+                                                                data-bs-toggle="modal" data-value="{{ $data->id }}" data-bs-target="#deleteModal" > <i class="dripicons-trash"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                <div class="modal fade" id="deleteModal" data-bs-backdrop="static"
+                                                    data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-hidden="true"></button>
+                                                            </div> <!-- end modal header -->
+                                                            <div class="modal-body">
+                                                                Do you really want to delete these records? This process cannot be undone.
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form action="{{ route('user.destroy', $data->slug) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                    <button type="submit" class="btn btn-danger" name="delete_data">Yes,
+                                                                        delete it</button>
+                                                                </form>
+                                                            </div> <!-- end modal footer -->
+                                                        </div> <!-- end modal content-->
+                                                    </div> <!-- end modal dialog-->
+                                                </div>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -90,4 +118,5 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
+    @include('includes.delete_alert')
     @endsection

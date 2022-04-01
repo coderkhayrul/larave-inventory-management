@@ -167,8 +167,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Request $request, $slug)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = User::where('id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'User Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'User Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
