@@ -142,8 +142,8 @@
                         <li><a href="{{ route('customer.create') }}">Add Customer</a></li>
                         <li><a href="#">Biller List</a></li>
                         <li><a href="#">Add Biller</a></li>
-                        <li><a href="#">Supplier List</a></li>
-                        <li><a href="#">Add Supplier</a></li>
+                        <li><a href="{{ route('supplier.index') }}">Supplier List</a></li>
+                        <li><a href="{{ route('supplier.create') }}">Add Supplier</a></li>
                     </ul>
                 </li>
                 <li>

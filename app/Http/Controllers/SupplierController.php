@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class SupplierController extends Controller
 {
@@ -25,7 +28,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.create');
     }
 
     /**
@@ -36,7 +39,47 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'supplier_name' => ['required', 'string', 'max:255'],
+            'supplier_company' => ['required', 'string', 'max:255'],
+            'supplier_phone' => ['required', 'string', 'max:20'],
+            'supplier_address' => ['required', 'string', 'max:255'],
+            'supplier_remarks' => ['required', 'string', 'max:255'],
+        ],[
+            'cg_id.required' =>  'Enter Group Name',
+            'supplier_name.required' =>  'Enter  supplier Name',
+            'supplier_phone.required' =>  'Enter Phone',
+            'supplier_address.required' =>  'Enter Address',
+            'supplier_company.required' =>  'Enter Company Name',
+            'supplier_remarks.required' =>  'Enter Remarks'
+        ]);
+
+        $slug = 'S' . uniqid();
+        $creator = Auth::user()->id;
+        $insert = Supplier::insertGetId([
+            'supplier_name' => $request->supplier_name,
+            'supplier_email' => $request->supplier_email,
+            'supplier_company' => $request->supplier_company,
+            'supplier_phone' => $request->supplier_phone,
+            'supplier_address' => $request->supplier_address,
+            'supplier_city' => $request->supplier_city,
+            'supplier_state' => $request->supplier_state,
+            'supplier_postal' => $request->supplier_postal,
+            'supplier_country' => $request->supplier_country,
+            'supplier_remarks' => $request->supplier_remarks,
+            'supplier_slug' => $slug,
+            'supplier_creator' => $creator,
+            'supplier_status' => 1,
+            'created_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if ($insert) {
+            Session::flash('success', 'Supplier Created successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Supplier Created Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
