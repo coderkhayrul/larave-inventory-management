@@ -21,7 +21,7 @@
                         <span key="t-ecommerce">Product</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Category</a></li>
+                        <li><a href="{{ route('product.category.index') }}">Category</a></li>
                         <li><a href="#">Product List</a></li>
                         <li><a href="#">Add Product</a></li>
                         <li><a href="#">Print Barcode</a></li>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -39,12 +40,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('/user/restore{slug}', [UserController::class, 'restore'])->name('user.restore');
     Route::delete('/user/{slug}', [UserController::class, 'destroy'])->name('user.destroy');
     // CUSTOMER GROUP ROUTE LIST
-    Route::get('/customer_groups', [CustomerGroupController::class, 'index'])->name('customer.group.index');
-    Route::get('/customer_group/create', [CustomerGroupController::class, 'create'])->name('customer.group.create');
-    Route::post('/customer_group', [CustomerGroupController::class, 'store'])->name('customer.group.store');
-    Route::get('/customer_group/edit/{slug}', [CustomerGroupController::class, 'edit'])->name('customer.group.edit');
-    Route::put('/customer_group/{slug}', [CustomerGroupController::class, 'update'])->name('customer.group.update');
-    Route::delete('/customer_group/{slug}', [CustomerGroupController::class, 'destroy'])->name('customer.group.destroy');
+    Route::get('/customer/groups', [CustomerGroupController::class, 'index'])->name('customer.group.index');
+    Route::get('/customer/group/create', [CustomerGroupController::class, 'create'])->name('customer.group.create');
+    Route::post('/customer/group', [CustomerGroupController::class, 'store'])->name('customer.group.store');
+    Route::get('/customer/group/edit/{slug}', [CustomerGroupController::class, 'edit'])->name('customer.group.edit');
+    Route::put('/customer/group/{slug}', [CustomerGroupController::class, 'update'])->name('customer.group.update');
+    Route::delete('/customer/group/{slug}', [CustomerGroupController::class, 'destroy'])->name('customer.group.destroy');
 
     // CUSTOMER ROUTE LIST
     Route::get('/customers', [CustomerController::class, 'index'])->name('customer.index');
@@ -63,6 +64,15 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('/supplier/edit/{slug}', [SupplierController::class, 'edit'])->name('supplier.edit');
     Route::put('/supplier/{slug}', [SupplierController::class, 'update'])->name('supplier.update');
     Route::delete('/supplier/{slug}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+
+    // PRODUCT-CATEGORY ROUTE LIST
+    Route::get('/product/catagory', [ProductCategoryController::class, 'index'])->name('product.category.index');
+    Route::get('/product/category/create', [ProductCategoryController::class, 'create'])->name('product.category.create');
+    Route::post('/product/category', [ProductCategoryController::class, 'store'])->name('product.category.store');
+    Route::get('/product/category/show/{slug}', [ProductCategoryController::class, 'show'])->name('product.category.show');
+    Route::get('/product/category/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('product.category.edit');
+    Route::put('/product/category/{slug}', [ProductCategoryController::class, 'update'])->name('product.category.update');
+    Route::delete('/product/category/{slug}', [ProductCategoryController::class, 'destroy'])->name('product.category.destroy');
 
 });
 
