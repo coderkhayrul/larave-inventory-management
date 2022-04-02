@@ -41,7 +41,6 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
         $this->validate($request,[
             'cg_id' => ['required', 'integer', 'max:255'],
             'customer_name' => ['required', 'string', 'max:255'],
@@ -105,9 +104,11 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($slug)
     {
-        //
+        $customer = Customer::where('customer_slug', $slug)->where('customer_status', 1)->firstOrFail();
+        $cg_all = CustomerGroup::where('cg_status', 1)->OrderBy('cg_id', 'ASC')->get();
+        return view('customer.edit', compact('customer','cg_all'));
     }
 
     /**
@@ -117,9 +118,49 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $slug)
     {
-        //
+        $this->validate($request,[
+            'cg_id' => ['required', 'integer', 'max:255'],
+            'customer_name' => ['required', 'string', 'max:255'],
+            'customer_company' => ['required', 'string', 'max:255'],
+            'customer_phone' => ['required', 'string', 'max:20'],
+            'customer_address' => ['required', 'string', 'max:255'],
+            'customer_remarks' => ['required', 'string', 'max:255'],
+        ],[
+            'cg_id.required' =>  'Enter Group Name',
+            'customer_name.required' =>  'Enter  Customer Name',
+            'customer_phone.required' =>  'Enter Phone',
+            'customer_address.required' =>  'Enter Address',
+            'customer_company.required' =>  'Enter Company Name',
+            'customer_remarks.required' =>  'Enter Remarks'
+        ]);
+
+        $editor = Auth::user()->id;
+        $update = Customer::where('customer_status', 1)->where('customer_slug', $slug)->update([
+            'cg_id' => $request->cg_id,
+            'customer_name' => $request->customer_name,
+            'customer_email' => $request->customer_email,
+            'customer_company' => $request->customer_company,
+            'customer_phone' => $request->customer_phone,
+            'customer_address' => $request->customer_address,
+            'customer_city' => $request->customer_city,
+            'customer_state' => $request->customer_state,
+            'customer_postal' => $request->customer_postal,
+            'customer_country' => $request->customer_country,
+            'customer_remarks' => $request->customer_remarks,
+            'customer_slug' => $slug,
+            'customer_editor' => $editor,
+            'updated_at' => Carbon::now()->toDateTimeString()
+        ]);
+
+        if ($update) {
+            Session::flash('success', 'Customer Updated successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Customer Updated Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
