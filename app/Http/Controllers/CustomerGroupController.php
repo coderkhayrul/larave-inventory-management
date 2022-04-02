@@ -94,6 +94,12 @@ class CustomerGroupController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        $this->validate($request,[
+            'cg_name' => $request->cg_name,
+        ],[
+            'cg_name.required' => 'Enter Group Name',
+        ]);
+
         $insert = CustomerGroup::where('cg_status', 1)->where('cg_slug', $slug)->update([
             'cg_name' => $request->cg_name,
             'cg_remarks' => $request->cg_remarks,
