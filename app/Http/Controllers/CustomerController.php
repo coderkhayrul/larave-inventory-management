@@ -93,9 +93,10 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($slug)
     {
-        //
+        $customer = Customer::where('customer_slug', $slug)->where('customer_status', 1)->firstOrFail();
+        return view('customer.show', compact('customer'));
     }
 
     /**
