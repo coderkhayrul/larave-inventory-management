@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,15 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('/customer/edit/{slug}', [CustomerController::class, 'edit'])->name('customer.edit');
     Route::put('/customer/{slug}', [CustomerController::class, 'update'])->name('customer.update');
     Route::delete('/customer/{slug}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+
+    // SUPPLIER ROUTE LIST
+    Route::get('/suppliers', [SupplierController::class, 'index'])->name('supplier.index');
+    Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
+    Route::post('/supplier', [SupplierController::class, 'store'])->name('supplier.store');
+    Route::get('/supplier/show/{slug}', [SupplierController::class, 'show'])->name('supplier.show');
+    Route::get('/supplier/edit/{slug}', [SupplierController::class, 'edit'])->name('supplier.edit');
+    Route::put('/supplier/{slug}', [SupplierController::class, 'update'])->name('supplier.update');
+    Route::delete('/supplier/{slug}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
 });
 

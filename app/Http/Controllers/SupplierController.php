@@ -14,7 +14,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Supplier::where('supplier_status', 1)->orderBy('supplier_id', 'asc')->get();
+        return view('supplier.index', compact('datas'));
     }
 
     /**
