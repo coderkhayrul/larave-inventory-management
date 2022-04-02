@@ -27,7 +27,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header bg-dark d-flex justify-content-between">
-                            <h4 class="pt-1 mb-0 text-light">Create Customer</h4>
+                            <h4 class="pt-1 mb-0 text-light">Edit Customer</h4>
                             <a href="{{ route('customer.index') }}" class="btn btn-primary btn-sm">All Customer</a>
                         </div>
 
