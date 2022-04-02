@@ -76,7 +76,8 @@
                                                                 <a class="dropdown-item text-primary btn-link"
                                                                     href="{{ route('customer.edit',$data->customer_slug) }}">
                                                                     <i class="dripicons-document-edit"></i> Edit</a>
-                                                                <a class="dropdown-item text-primary btn-link delete-modal"
+
+                                                                    <a class="dropdown-item text-primary btn-link delete-modal"
                                                                     href="{{ route('customer.destroy',$data->customer_slug) }}"
                                                                     data-bs-toggle="modal"
                                                                     data-value="{{ $data->customer_id }}"
@@ -102,7 +103,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <form
-                                                                    action="{{ route('user.destroy', $data->customer_slug) }}"
+                                                                    action="{{ route('customer.destroy', $data->customer_slug) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('DELETE')

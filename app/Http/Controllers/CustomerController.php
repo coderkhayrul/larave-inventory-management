@@ -128,8 +128,17 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Request $request, $slug)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = Customer::where('customer_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Customer Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Customer Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
