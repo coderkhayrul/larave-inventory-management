@@ -88,9 +88,10 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
+    public function show($slug)
     {
-        //
+        $supplier = Supplier::where('supplier_slug', $slug)->where('supplier_status', 1)->firstOrFail();
+        return view('supplier.show', compact('supplier'));
     }
 
     /**
@@ -122,8 +123,17 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = Supplier::where('supplier_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Supplier Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Supplier Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
