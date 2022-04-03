@@ -56,7 +56,7 @@
                                                 <select class="form-select @error('pc_parent') is-invalid @enderror" value="{{ old('pc_parent') }}" name="pc_parent">
                                                     <option value="0">No Parent Category</option>
                                                     @foreach ($pro_category as $category)
-                                                    <option value="$category->pc_id">{{ $category->pc_name }}</option>
+                                                    <option value="{{ $category->pc_id }}">{{ $category->pc_name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('pc_parent')
@@ -73,13 +73,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group pb-2">
                                             <label><strong>Image</strong></label>
-                                            <input type="file" name="pc_image"
+                                            <input id="user-fileinput" type="file" name="pc_image"
                                                 class="form-control @error('pc_image') is-invalid @enderror" value="{{ old('pc_image') }}">
                                             @error('pc_image')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
+                                        </div>
+                                        <div class="form-group pb-2">
+                                            <img id="preview-image" class="rounded avatar-lg" src="{{ asset('uploads/default_user.png') }}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -92,4 +95,13 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
+    <script type="text/javascript">
+        $('#user-fileinput').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#preview-image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    </script>
 @endsection

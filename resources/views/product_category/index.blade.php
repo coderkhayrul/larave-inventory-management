@@ -49,9 +49,15 @@
                                             <tbody>
                                                 @foreach ($datas as $data)
                                                 <tr>
-                                                    <td>{{ $data['pc_image'] }}</td>
+                                                    <td class="text-center"><img class="rounded avatar-sm" height="50px" src="{{ asset('uploads/product/category/' . $data->pc_image) }}" alt="Category"></td>
                                                     <td>{{ $data['pc_name'] }}</td>
-                                                    <td>{{ $data['pc_parent'] }}</td>
+                                                    <td>
+                                                        @if (!empty($data['pc_parent']))
+                                                        {{ $data['pc_parent']}}
+                                                        @else
+                                                        N/A
+                                                        @endif
+                                                    </td>
                                                     <td class="text-center">
                                                         <div class="btn-group" role="group">
                                                             <button id="btnGroupVerticalDrop1" type="button"
@@ -62,9 +68,6 @@
                                                             </button>
                                                             <div class="dropdown-menu"
                                                                 aria-labelledby="btnGroupVerticalDrop1" style="">
-                                                                <a class="dropdown-item text-primary btn-link"
-                                                                    href="{{ route('product.category.show',$data->pc_slug) }}">
-                                                                    <i class="dripicons-preview"></i> Show</a>
                                                                 <a class="dropdown-item text-primary btn-link"
                                                                     href="{{ route('product.category.edit',$data->pc_slug) }}">
                                                                     <i class="dripicons-document-edit"></i> Edit</a>

@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductCategoryController extends Controller
 {
@@ -59,11 +60,24 @@ class ProductCategoryController extends Controller
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
 
+        // Product Category Image Upload
+        if ($request->hasFile('pc_image')) {
+            $image = $request->file('pc_image');
+            $imageName = 'pc' . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(250, 250)->save('uploads/product/category/' . $imageName);
+
+            ProductCategory::where('pc_id', $insert)->update([
+                'pc_image' => $imageName,
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+
         if ($insert) {
-            Session::flash('success', 'Customer Created successfully');
+            Session::flash('success', 'Product Category Created successfully');
             return redirect()->back();
         } else {
-            Session::flash('error', 'Customer Created Failed!');
+            Session::flash('error', 'Product Category Created Failed!');
             return redirect()->back();
         }
 
@@ -86,9 +100,10 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductCategory $productCategory)
+    public function edit($slug)
     {
-        return view('product_category.edit');
+        $data = ProductCategory::where('pc_slug', $slug)->where('pc_status', 1)->firstOrFail();
+        return view('product_category.edit', compact('data'));
     }
 
     /**
@@ -109,8 +124,17 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy(Request $request, $slug)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = ProductCategory::where('pc_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Product Category Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Product Category Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
