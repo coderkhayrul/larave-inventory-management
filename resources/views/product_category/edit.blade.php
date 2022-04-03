@@ -34,8 +34,9 @@
                         <div class="card-body">
                             <p class="italic"><small>The field labels marked with <span class="text-danger">*</span> are required input fields.</small>
                             </p>
-                            <form method="POST" action="{{ route('product.category.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('product.category.update',$data->pc_slug) }}" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group pb-2">
@@ -56,7 +57,7 @@
                                                 <select class="form-select @error('pc_parent') is-invalid @enderror" value="{{ old('pc_parent') }}" name="pc_parent">
                                                     <option value="0">No Parent Category</option>
                                                     @foreach ($pro_category as $category)
-                                                    <option value="{{ $category->pc_id }}">{{ $category->pc_name }}</option>
+                                                    <option {{ $category->pc_id == $data->pc_parent ? 'selected' : '' }} value="{{ $category->pc_id }}">{{ $category->pc_name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('pc_parent')
@@ -73,8 +74,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group pb-2">
                                             <label><strong>Image</strong></label>
-                                            <input id="user-fileinput" type="file" name="pc_image"
-                                                class="form-control @error('pc_image') is-invalid @enderror" value="{{ old('pc_image') }}">
+                                            <input id="user-fileinput" type="file" name="pc_image" class="form-control @error('pc_image') is-invalid @enderror">
                                             @error('pc_image')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

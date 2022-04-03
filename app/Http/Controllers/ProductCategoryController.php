@@ -52,7 +52,6 @@ class ProductCategoryController extends Controller
         $creator = Auth::user()->id;
         $insert = ProductCategory::insertGetId([
             'pc_name' => $request->pc_name,
-            'pc_image' => $request->pc_image,
             'pc_parent' => $request->pc_parent,
             'pc_slug' => Str::slug($request->pc_name, '-'),
             'pc_creator' => $creator,
@@ -113,9 +112,41 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, $slug)
     {
-        //
+        $this->validate($request,[
+            'pc_name' => ['required', 'string', 'max:255'],
+        ], [
+            'pc_name.required' => 'Enter Product Name',
+        ]);
+        $editor  = Auth::user()->id;
+        $update = ProductCategory::where('pc_status', 1)->where('pc_slug', $slug)->update([
+            'pc_name' => $request->pc_name,
+            'pc_parent' => $request->pc_parent,
+            'pc_editor' => $editor,
+            'pc_status' => 1,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        // User Image Upload
+        if ($request->hasFile('pc_image')) {
+            $image = $request->file('pc_image');
+            $imageName = 'PC' . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(250, 250)->save('uploads/product/category/' . $imageName);
+
+            ProductCategory::where('pc_slug', $slug)->update([
+                'pc_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($update) {
+            Session::flash('success', 'User Updated successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'User Update Failed!');
+            return redirect()->back();
+        }
     }
 
     /**

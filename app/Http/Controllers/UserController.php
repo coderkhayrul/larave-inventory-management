@@ -119,7 +119,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        // return $request->all();
         $this->validate($request,[
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:50'],
