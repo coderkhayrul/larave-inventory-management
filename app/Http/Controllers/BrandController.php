@@ -14,7 +14,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Brand::where('brand_status', 1)->orderBy('brand_id', 'asc')->get();
+        return view('brand.index', compact('datas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('brand.create');
     }
 
     /**
@@ -35,7 +36,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
 use App\Http\Controllers\ProductCategoryController;
@@ -79,10 +80,17 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('/product/type', [ProductTypeController::class, 'index'])->name('product.type.index');
     Route::get('/product/type/create', [ProductTypeController::class, 'create'])->name('product.type.create');
     Route::post('/product/type', [ProductTypeController::class, 'store'])->name('product.type.store');
-    // Route::get('/product/type/show/{slug}', [ProductTypeController::class, 'show'])->name('product.type.show');
     Route::get('/product/type/edit/{slug}', [ProductTypeController::class, 'edit'])->name('product.type.edit');
     Route::put('/product/type/{slug}', [ProductTypeController::class, 'update'])->name('product.type.update');
     Route::delete('/product/type/{slug}', [ProductTypeController::class, 'destroy'])->name('product.type.destroy');
+
+    // BRAND ROUTE LIST
+    Route::get('/brand', [BrandController::class, 'index'])->name('brand.index');
+    Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create');
+    Route::post('/brand', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/brand/edit/{slug}', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::put('/brand/{slug}', [BrandController::class, 'update'])->name('brand.update');
+    Route::delete('/brand/{slug}', [BrandController::class, 'destroy'])->name('brand.destroy');
 
 });
 
