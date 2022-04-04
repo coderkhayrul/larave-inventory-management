@@ -24,6 +24,7 @@
                         <li><a href="{{ route('product.category.index') }}">Category</a></li>
                         <li><a href="#">Product List</a></li>
                         <li><a href="#">Add Product</a></li>
+                        <li><a href="{{ route('product.type.index') }}">Product Type</a></li>
                         <li><a href="#">Print Barcode</a></li>
                         <li><a href="#">Adjustment List</a></li>
                         <li><a href="#">Add Adjustment</a></li>

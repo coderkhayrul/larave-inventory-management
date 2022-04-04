@@ -20,7 +20,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $datas = ProductCategory::where('pc_status', 1)->orderBy('pc_id', 'asc')->get();
-        return view('product_category.index', compact('datas'));
+        return view('product.category.index', compact('datas'));
     }
 
     /**
@@ -30,7 +30,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        return view('product_category.create');
+        return view('product.category.create');
     }
 
     /**
@@ -102,7 +102,7 @@ class ProductCategoryController extends Controller
     public function edit($slug)
     {
         $data = ProductCategory::where('pc_slug', $slug)->where('pc_status', 1)->firstOrFail();
-        return view('product_category.edit', compact('data'));
+        return view('product.category.edit', compact('data'));
     }
 
     /**

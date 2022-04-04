@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -66,13 +67,22 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::delete('/supplier/{slug}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
     // PRODUCT-CATEGORY ROUTE LIST
-    Route::get('/product/catagory', [ProductCategoryController::class, 'index'])->name('product.category.index');
+    Route::get('/product/category', [ProductCategoryController::class, 'index'])->name('product.category.index');
     Route::get('/product/category/create', [ProductCategoryController::class, 'create'])->name('product.category.create');
     Route::post('/product/category', [ProductCategoryController::class, 'store'])->name('product.category.store');
     Route::get('/product/category/show/{slug}', [ProductCategoryController::class, 'show'])->name('product.category.show');
     Route::get('/product/category/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('product.category.edit');
     Route::put('/product/category/{slug}', [ProductCategoryController::class, 'update'])->name('product.category.update');
     Route::delete('/product/category/{slug}', [ProductCategoryController::class, 'destroy'])->name('product.category.destroy');
+
+        // PRODUCT-CATEGORY ROUTE LIST
+        Route::get('/product/type', [ProductTypeController::class, 'index'])->name('product.type.index');
+        Route::get('/product/type/create', [ProductTypeController::class, 'create'])->name('product.type.create');
+        Route::post('/product/type', [ProductTypeController::class, 'store'])->name('product.type.store');
+        // Route::get('/product/type/show/{slug}', [ProductTypeController::class, 'show'])->name('product.type.show');
+        Route::get('/product/type/edit/{slug}', [ProductTypeController::class, 'edit'])->name('product.type.edit');
+        Route::put('/product/type/{slug}', [ProductTypeController::class, 'update'])->name('product.type.update');
+        Route::delete('/product/type/{slug}', [ProductTypeController::class, 'destroy'])->name('product.type.destroy');
 
 });
 
