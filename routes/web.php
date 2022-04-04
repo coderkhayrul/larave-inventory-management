@@ -75,14 +75,14 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::put('/product/category/{slug}', [ProductCategoryController::class, 'update'])->name('product.category.update');
     Route::delete('/product/category/{slug}', [ProductCategoryController::class, 'destroy'])->name('product.category.destroy');
 
-        // PRODUCT-CATEGORY ROUTE LIST
-        Route::get('/product/type', [ProductTypeController::class, 'index'])->name('product.type.index');
-        Route::get('/product/type/create', [ProductTypeController::class, 'create'])->name('product.type.create');
-        Route::post('/product/type', [ProductTypeController::class, 'store'])->name('product.type.store');
-        // Route::get('/product/type/show/{slug}', [ProductTypeController::class, 'show'])->name('product.type.show');
-        Route::get('/product/type/edit/{slug}', [ProductTypeController::class, 'edit'])->name('product.type.edit');
-        Route::put('/product/type/{slug}', [ProductTypeController::class, 'update'])->name('product.type.update');
-        Route::delete('/product/type/{slug}', [ProductTypeController::class, 'destroy'])->name('product.type.destroy');
+    // PRODUCT-TYPE ROUTE LIST
+    Route::get('/product/type', [ProductTypeController::class, 'index'])->name('product.type.index');
+    Route::get('/product/type/create', [ProductTypeController::class, 'create'])->name('product.type.create');
+    Route::post('/product/type', [ProductTypeController::class, 'store'])->name('product.type.store');
+    // Route::get('/product/type/show/{slug}', [ProductTypeController::class, 'show'])->name('product.type.show');
+    Route::get('/product/type/edit/{slug}', [ProductTypeController::class, 'edit'])->name('product.type.edit');
+    Route::put('/product/type/{slug}', [ProductTypeController::class, 'update'])->name('product.type.update');
+    Route::delete('/product/type/{slug}', [ProductTypeController::class, 'destroy'])->name('product.type.destroy');
 
 });
 
