@@ -49,7 +49,7 @@
                                                 @foreach ($datas as $data)
                                                 <tr>
                                                     <td class="text-center"><img class="rounded avatar-sm" height="50px"
-                                                            src="{{ asset('uploads/brand' . $data->brand_image) }}"
+                                                            src="{{ asset('uploads/brand/' . $data->brand_image) }}"
                                                             alt="Category"></td>
                                                     <td>{{ $data['brand_name'] }}</td>
                                                     <td class="text-center">
