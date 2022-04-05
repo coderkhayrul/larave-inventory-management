@@ -58,6 +58,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::put('/customer/{slug}', [CustomerController::class, 'update'])->name('customer.update');
     Route::delete('/customer/{slug}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 
+    // PDF GEN ROUTE
+    Route::get('/customer/pdf', [CustomerController::class, 'generatePDF'])->name('customer.pdf');
+
     // SUPPLIER ROUTE LIST
     Route::get('/suppliers', [SupplierController::class, 'index'])->name('supplier.index');
     Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');

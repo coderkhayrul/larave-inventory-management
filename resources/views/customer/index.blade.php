@@ -77,7 +77,7 @@
                                                                     href="{{ route('customer.edit',$data->customer_slug) }}">
                                                                     <i class="dripicons-document-edit"></i> Edit</a>
 
-                                                                    <a class="dropdown-item text-primary btn-link delete-modal"
+                                                                <a class="dropdown-item text-primary btn-link delete-modal"
                                                                     href="{{ route('customer.destroy',$data->customer_slug) }}"
                                                                     data-bs-toggle="modal"
                                                                     data-value="{{ $data->customer_id }}"
@@ -123,7 +123,13 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row py-2">
+                                <div class="col-md-4">
+                                    <a href="#" class="btn btn-success btn-sm"><i class='fas fa-file-excel'></i> Excal</a>
+                                    <a href="{{ route('customer.pdf') }}" class="btn btn-danger btn-sm"><i class='fas fa-file-pdf'></i> PDF</a>
+                                    <a href="#" class="btn btn-primary btn-sm"><i class='fas fa-file-csv'></i> CVS</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

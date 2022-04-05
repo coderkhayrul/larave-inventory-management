@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 class CustomerController extends Controller
 {
@@ -182,5 +183,11 @@ class CustomerController extends Controller
             Session::flash('error', 'Customer Delete Failed!');
             return redirect()->back();
         }
+    }
+    public function generatePDF(){
+        $all= Customer::where('customer_status', 1)->orderBy('customer_id', 'asc')->get();
+        $pdf = PDF::loadView('pdf.customer',compact('all'));
+
+        return $pdf->download('customer.pdf');
     }
 }
