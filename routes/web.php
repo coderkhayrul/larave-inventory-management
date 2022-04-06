@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\SupplierController;
@@ -96,5 +97,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::delete('/brand/{slug}', [BrandController::class, 'destroy'])->name('brand.destroy');
 
 });
+
+Route::get('/pdf/testing', [PdfController::class, 'index'])->name('pdf.testing');
+
 
 require __DIR__.'/auth.php';

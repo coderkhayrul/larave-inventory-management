@@ -130,13 +130,11 @@ class BrandController extends Controller
             $image = $request->file('brand_image');
             $imageName = 'B' . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(250, 250)->save('uploads/brand/' . $imageName);
-
             Brand::where('brand_slug', $slug)->update([
                 'brand_image' => $imageName,
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
-
         if ($update) {
             Session::flash('success', 'Brand Updated successfully');
             return redirect()->back();
