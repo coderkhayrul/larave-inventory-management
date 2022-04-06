@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 class SupplierController extends Controller
 {
@@ -173,5 +174,12 @@ class SupplierController extends Controller
             Session::flash('error', 'Supplier Delete Failed!');
             return redirect()->back();
         }
+    }
+
+    public function generatePDF(){
+        $all= Supplier::where('supplier_status', 1)->orderBy('supplier_id', 'asc')->get();
+        $pdf = PDF::loadView('pdf.supplier',compact('all'));
+
+        return $pdf->download('supplier.pdf');
     }
 }

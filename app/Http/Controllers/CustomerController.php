@@ -187,7 +187,6 @@ class CustomerController extends Controller
     public function generatePDF(){
         $all= Customer::where('customer_status', 1)->orderBy('customer_id', 'asc')->get();
         $pdf = PDF::loadView('pdf.customer',compact('all'));
-
         return $pdf->download('customer.pdf');
     }
 }

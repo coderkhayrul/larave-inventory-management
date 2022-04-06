@@ -21,20 +21,18 @@
                         <td width='15%' bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Name
                             </strong></td>
                         <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Phone</strong></td>
-                        <td width='20%' bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Company Name</strong>
+                        <td width='20%' bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Company</strong>
                         </td>
-                        <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Remarks</strong></td>
                         <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Address</strong></td>
                     </tr>
                     <tr style="display:none;">
                         <td colspan="*">
                     @foreach ($all as $data)
                     <tr>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_name }}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_phone }}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_company }}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_remarks}}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_address }}</td>
+                        <td valign='top' style='font-size:12px;'>{{ $data->supplier_name }}</td>
+                        <td valign='top' style='font-size:12px;'>{{ $data->supplier_phone }}</td>
+                        <td valign='top' style='font-size:12px;'>{{ $data->supplier_company }}</td>
+                        <td valign='top' style='font-size:12px;'>{{ $data->supplier_address }}</td>
                     </tr>
                     @endforeach
             </td>

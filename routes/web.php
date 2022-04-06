@@ -42,6 +42,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('/user/soft-delete{slug}', [UserController::class, 'softdelete'])->name('user.softdelete');
     Route::get('/user/restore{slug}', [UserController::class, 'restore'])->name('user.restore');
     Route::delete('/user/{slug}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    // PDF GEN ROUTE
+    Route::get('/user/pdf', [UserController::class, 'generatePDF'])->name('user.pdf');
+
     // CUSTOMER GROUP ROUTE LIST
     Route::get('/customer/groups', [CustomerGroupController::class, 'index'])->name('customer.group.index');
     Route::get('/customer/group/create', [CustomerGroupController::class, 'create'])->name('customer.group.create');
@@ -71,6 +75,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::put('/supplier/{slug}', [SupplierController::class, 'update'])->name('supplier.update');
     Route::delete('/supplier/{slug}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
+    Route::get('/supplier/pdf', [SupplierController::class, 'generatePDF'])->name('supplier.pdf');
+
+
     // PRODUCT-CATEGORY ROUTE LIST
     Route::get('/product/category', [ProductCategoryController::class, 'index'])->name('product.category.index');
     Route::get('/product/category/create', [ProductCategoryController::class, 'create'])->name('product.category.create');
@@ -95,10 +102,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('/brand/edit/{slug}', [BrandController::class, 'edit'])->name('brand.edit');
     Route::put('/brand/{slug}', [BrandController::class, 'update'])->name('brand.update');
     Route::delete('/brand/{slug}', [BrandController::class, 'destroy'])->name('brand.destroy');
-
 });
-
-Route::get('/pdf/testing', [PdfController::class, 'index'])->name('pdf.testing');
-
 
 require __DIR__.'/auth.php';

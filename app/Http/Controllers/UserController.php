@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
+use PDF;
 class UserController extends Controller
 {
     /**
@@ -178,5 +179,12 @@ class UserController extends Controller
             Session::flash('error', 'User Delete Failed!');
             return redirect()->back();
         }
+    }
+
+    public function generatePDF(){
+        $all= User::where('status', 1)->orderBy('id', 'asc')->get();
+        $pdf = PDF::loadView('pdf.user',compact('all'));
+
+        return $pdf->download('user.pdf');
     }
 }

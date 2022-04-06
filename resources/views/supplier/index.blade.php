@@ -119,7 +119,13 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row py-2">
+                                <div class="col-md-4">
+                                    <a href="#" class="btn btn-success btn-sm"><i class='fas fa-file-excel'></i> Excal</a>
+                                    <a href="{{ route('supplier.pdf') }}" class="btn btn-danger btn-sm"><i class='fas fa-file-pdf'></i> PDF</a>
+                                    <a href="#" class="btn btn-primary btn-sm"><i class='fas fa-file-csv'></i> CVS</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

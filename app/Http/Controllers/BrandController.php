@@ -163,4 +163,11 @@ class BrandController extends Controller
             return redirect()->back();
         }
     }
+
+    public function generatePDF(){
+        $datas= Brand::where('brand_status', 1)->orderBy('brand_id', 'asc')->get();
+        $pdf = PDF::loadView('pdf.brand',compact('datas'));
+
+        return $pdf->download('brand.pdf');
+    }
 }

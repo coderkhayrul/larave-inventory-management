@@ -20,21 +20,25 @@
                     <tr>
                         <td width='15%' bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Name
                             </strong></td>
-                        <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Phone</strong></td>
-                        <td width='20%' bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Company Name</strong>
+                        <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Email</strong></td>
+                        <td width='20%' bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Phone</strong>
                         </td>
-                        <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Remarks</strong></td>
-                        <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Address</strong></td>
+                        <td bordercolor='#ccc' bgcolor='#f2f2f2' style='font-size:12px;'><strong>Status</strong></td>
                     </tr>
                     <tr style="display:none;">
                         <td colspan="*">
                     @foreach ($all as $data)
                     <tr>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_name }}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_phone }}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_company }}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_remarks}}</td>
-                        <td valign='top' style='font-size:12px;'>{{ $data->customer_address }}</td>
+                        <td valign='top' style='font-size:12px;'>{{ $data->name }}</td>
+                        <td valign='top' style='font-size:12px;'>{{ $data->email }}</td>
+                        <td valign='top' style='font-size:12px;'>{{ $data->phone }}</td>
+                        <td valign='top' style='font-size:12px;'>
+                        @if ($data->active == 1)
+                            Active
+                        @else
+                            Deactive
+                        @endif
+                        </td>
                     </tr>
                     @endforeach
             </td>
