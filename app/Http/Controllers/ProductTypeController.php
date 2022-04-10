@@ -100,18 +100,18 @@ class ProductTypeController extends Controller
         $this->validate($request,[
             'pt_name' => ['required', 'string', 'max:255'],
         ],[
-            'pc_name.required' => "Enter Your Name",
+            'pt_name.required' => "Enter Your Name",
         ]);
 
         $editor = Auth::user()->id;
-        $insert = ProductType::where('pt_status', 1)->where('pt_slug', $slug)->update([
+        $update = ProductType::where('pt_status', 1)->where('pt_slug', $slug)->update([
             'pt_name' => $request->pt_name,
             'pt_remarks' => $request->pt_remarks,
             'pt_editor' => $editor,
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
 
-        if ($insert) {
+        if ($update) {
             Session::flash('success', 'Product Type Updated successfully');
             return redirect()->back();
         } else {

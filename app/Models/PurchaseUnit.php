@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseUnit extends Model
 {
     use HasFactory;
+
+    protected $fillabel =[
+        'pu_name', 'pu_remarks'
+    ];
 }
