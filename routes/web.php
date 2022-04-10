@@ -7,6 +7,8 @@ use App\Http\Controllers\CustomerGroupController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\PurchaseUnitController;
+use App\Http\Controllers\SellUnitController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -102,6 +104,22 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('/brand/edit/{slug}', [BrandController::class, 'edit'])->name('brand.edit');
     Route::put('/brand/{slug}', [BrandController::class, 'update'])->name('brand.update');
     Route::delete('/brand/{slug}', [BrandController::class, 'destroy'])->name('brand.destroy');
+
+    // PURCHASE UNIT ROUTE LIST
+    Route::get('/purchase/unit', [PurchaseUnitController::class, 'index'])->name('purchase.unit.index');
+    Route::get('/purchase/unit/create', [PurchaseUnitController::class, 'create'])->name('purchase.unit.create');
+    Route::post('/purchase/unit', [PurchaseUnitController::class, 'store'])->name('purchase.unit.store');
+    Route::get('/purchase/unit/edit/{slug}', [PurchaseUnitController::class, 'edit'])->name('purchase.unit.edit');
+    Route::put('/purchase/unit/{slug}', [PurchaseUnitController::class, 'update'])->name('purchase.unit.update');
+    Route::delete('/purchase/unit/{slug}', [PurchaseUnitController::class, 'destroy'])->name('purchase.unit.destroy');
+
+        // SELL UNIT ROUTE LIST
+        Route::get('/sell/unit', [SellUnitController::class, 'index'])->name('sell.unit.index');
+        Route::get('/sell/unit/create', [SellUnitController::class, 'create'])->name('sell.unit.create');
+        Route::post('/sell/unit', [SellUnitController::class, 'store'])->name('sell.unit.store');
+        Route::get('/sell/unit/edit/{slug}', [SellUnitController::class, 'edit'])->name('sell.unit.edit');
+        Route::put('/sell/unit/{slug}', [SellUnitController::class, 'update'])->name('sell.unit.update');
+        Route::delete('/sell/unit/{slug}', [SellUnitController::class, 'destroy'])->name('sell.unit.destroy');
 });
 
 require __DIR__.'/auth.php';

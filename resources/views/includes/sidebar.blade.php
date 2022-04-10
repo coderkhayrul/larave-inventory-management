@@ -186,7 +186,8 @@
                         <li><a href="#">Warehouse</a></li>
                         <li><a href="{{ route('customer.group.index') }}">Customer Group</a></li>
                         <li><a href="{{ route('brand.index') }}">Brand</a></li>
-                        <li><a href="#">Unit</a></li>
+                        <li><a href="{{ route('purchase.unit.index') }}">Purchase Unit</a></li>
+                        <li><a href="{{ route('sell.unit.index') }}">Sell Unit</a></li>
                         <li><a href="#">Currency</a></li>
                         <li><a href="#">Tax</a></li>
                         <li><a href="#">User Profile</a></li>
