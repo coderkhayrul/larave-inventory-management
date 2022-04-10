@@ -14,7 +14,12 @@ class CreateSellUnitsTable extends Migration
     public function up()
     {
         Schema::create('sell_units', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('su_id');
+            $table->integer('pu_id');
+            $table->string('su_name')->unique();
+            $table->text('su_remarks')->nullable();
+            $table->string('su_slug', 50);
+            $table->integer('su_status')->default(1);
             $table->timestamps();
         });
     }

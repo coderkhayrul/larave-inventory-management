@@ -16,7 +16,7 @@ class CreatePurchaseUnitsTable extends Migration
         Schema::create('purchase_units', function (Blueprint $table) {
             $table->bigIncrements('pu_id');
             $table->string('pu_name')->unique();
-            $table->text('pu_remarks');
+            $table->text('pu_remarks')->nullable();
             $table->string('pu_slug', 50);
             $table->integer('pu_status')->default(1);
             $table->timestamps();
