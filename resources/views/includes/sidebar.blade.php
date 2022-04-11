@@ -189,7 +189,7 @@
                         <li><a href="{{ route('purchase.unit.index') }}">Purchase Unit</a></li>
                         <li><a href="{{ route('sell.unit.index') }}">Sell Unit</a></li>
                         <li><a href="#">Currency</a></li>
-                        <li><a href="#">Tax</a></li>
+                        <li><a href="{{ route('tax.index') }}">Tax</a></li>
                         <li><a href="#">User Profile</a></li>
                         <li><a href="#">Create SMS</a></li>
                         <li><a href="#">Backup Database</a></li>

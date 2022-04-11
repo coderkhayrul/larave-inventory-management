@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\PurchaseUnitController;
 use App\Http\Controllers\SellUnitController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -113,13 +114,21 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::put('/purchase/unit/{slug}', [PurchaseUnitController::class, 'update'])->name('purchase.unit.update');
     Route::delete('/purchase/unit/{slug}', [PurchaseUnitController::class, 'destroy'])->name('purchase.unit.destroy');
 
-        // SELL UNIT ROUTE LIST
-        Route::get('/sell/unit', [SellUnitController::class, 'index'])->name('sell.unit.index');
-        Route::get('/sell/unit/create', [SellUnitController::class, 'create'])->name('sell.unit.create');
-        Route::post('/sell/unit', [SellUnitController::class, 'store'])->name('sell.unit.store');
-        Route::get('/sell/unit/edit/{slug}', [SellUnitController::class, 'edit'])->name('sell.unit.edit');
-        Route::put('/sell/unit/{slug}', [SellUnitController::class, 'update'])->name('sell.unit.update');
-        Route::delete('/sell/unit/{slug}', [SellUnitController::class, 'destroy'])->name('sell.unit.destroy');
+    // SELL UNIT ROUTE LIST
+    Route::get('/sell/unit', [SellUnitController::class, 'index'])->name('sell.unit.index');
+    Route::get('/sell/unit/create', [SellUnitController::class, 'create'])->name('sell.unit.create');
+    Route::post('/sell/unit', [SellUnitController::class, 'store'])->name('sell.unit.store');
+    Route::get('/sell/unit/edit/{slug}', [SellUnitController::class, 'edit'])->name('sell.unit.edit');
+    Route::put('/sell/unit/{slug}', [SellUnitController::class, 'update'])->name('sell.unit.update');
+    Route::delete('/sell/unit/{slug}', [SellUnitController::class, 'destroy'])->name('sell.unit.destroy');
+
+    // TAX ROUTE LIST
+    Route::get('tax', [TaxController::class, 'index'])->name('tax.index');
+    Route::get('tax/create', [TaxController::class, 'create'])->name('tax.create');
+    Route::post('tax', [TaxController::class, 'store'])->name('tax.store');
+    Route::get('tax/edit/{slug}', [TaxController::class, 'edit'])->name('tax.edit');
+    Route::put('tax/{slug}', [TaxController::class, 'update'])->name('tax.update');
+    Route::delete('tax/{slug}', [TaxController::class, 'destroy'])->name('tax.destroy');
 });
 
 require __DIR__.'/auth.php';
