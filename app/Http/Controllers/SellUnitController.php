@@ -83,9 +83,11 @@ class SellUnitController extends Controller
      * @param  \App\Models\SellUnit  $sellUnit
      * @return \Illuminate\Http\Response
      */
-    public function edit(SellUnit $sellUnit)
+    public function edit($slug)
     {
-        //
+        $pu_all = PurchaseUnit::where('pu_status', 1)->orderBy('pu_id', 'DESC')->get();
+        $data = SellUnit::where('su_status', 1)->where('su_slug', $slug)->firstOrFail();
+        return view('sell_unit.edit', compact('data','pu_all'));
     }
 
     /**
@@ -95,9 +97,30 @@ class SellUnitController extends Controller
      * @param  \App\Models\SellUnit  $sellUnit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SellUnit $sellUnit)
+    public function update(Request $request, $slug)
     {
-        //
+        $this->validate($request,[
+            'su_name' => ['required', 'string', 'max:255'],
+        ],[
+            'su_name.required' => "Enter Your Name",
+        ]);
+
+        $id = $request->su_id;
+        $update = SellUnit::where('su_slug', $slug)->where('su_id', $id)->update([
+            'su_name' => $request->su_name,
+            'su_remarks' => $request->su_remarks,
+            'pu_id' => $request->pu_id,
+            'su_slug' => Str::slug($request->su_name, '-'),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if ($update) {
+            Session::flash('success', 'Sell Unit Updated successfully');
+            return redirect()->route('sell.unit.index');
+        } else {
+            Session::flash('error', 'Sell Unit Updated Failed!');
+            return redirect()->route('sell.unit.index');
+        }
     }
 
     /**
@@ -106,8 +129,17 @@ class SellUnitController extends Controller
      * @param  \App\Models\SellUnit  $sellUnit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SellUnit $sellUnit)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = SellUnit::where('su_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Sell Unit Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Sell Unit Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
