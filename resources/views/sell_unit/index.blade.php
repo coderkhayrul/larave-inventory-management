@@ -51,7 +51,7 @@
                                                 <tr>
                                                     <td>{{ $data->purchase_unit->pu_name }}</td>
                                                     <td>{{ $data['su_name'] }}</td>
-                                                    <td>{{ $data['su_remarks'] }}</td>>
+                                                    <td>{{ $data['su_remarks'] }}</td>
 
                                                     <td class="text-center">
                                                         <div class="btn-group" role="group">
