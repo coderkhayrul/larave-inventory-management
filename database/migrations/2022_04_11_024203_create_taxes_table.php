@@ -14,7 +14,12 @@ class CreateTaxesTable extends Migration
     public function up()
     {
         Schema::create('taxes', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('tax_id');
+            $table->string('tax_name')->unique();
+            $table->integer('tax_percent');
+            $table->text('tax_remarks');
+            $table->string('tax_slug', 50);
+            $table->integer('tax_status')->default(1);
             $table->timestamps();
         });
     }
