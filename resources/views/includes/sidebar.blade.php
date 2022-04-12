@@ -194,6 +194,9 @@
                         <li><a href="#">Create SMS</a></li>
                         <li><a href="#">Backup Database</a></li>
                         <li><a href="#">General Setting</a></li>
+                        <li><a href="#">Basic Setting</a></li>
+                        <li><a href="#">Social Media</a></li>
+                        <li><a href="#">Contact Information</a></li>
                         <li><a href="#">Mail Setting</a></li>
                         <li><a href="#">Reward Point Setting</a></li>
                         <li><a href="#">SMS Setting</a></li>

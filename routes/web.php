@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BasicSettingController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 // Route::get('/dashboard', function () {
@@ -129,6 +130,14 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('tax/edit/{slug}', [TaxController::class, 'edit'])->name('tax.edit');
     Route::put('tax/{slug}', [TaxController::class, 'update'])->name('tax.update');
     Route::delete('tax/{slug}', [TaxController::class, 'destroy'])->name('tax.destroy');
+
+    // SOCIAL MEDIA LIST
+    Route::get('basic-setting', [BasicSettingController::class, 'index'])->name('basic.setting.index');
+    Route::get('basic-setting/create', [BasicSettingController::class, 'create'])->name('basic.setting.create');
+    Route::post('basic-setting', [BasicSettingController::class, 'store'])->name('basic.setting.store');
+    Route::get('basic-setting/edit/{slug}', [BasicSettingController::class, 'edit'])->name('basic.setting.edit');
+    Route::put('basic-setting/{slug}', [BasicSettingController::class, 'update'])->name('basic.setting.update');
+    Route::delete('basic-setting/{slug}', [BasicSettingController::class, 'destroy'])->name('basic.setting.destroy');
 });
 
 require __DIR__.'/auth.php';
