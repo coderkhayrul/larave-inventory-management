@@ -133,11 +133,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
 
     // SOCIAL MEDIA LIST
     Route::get('basic-setting', [BasicSettingController::class, 'index'])->name('basic.setting.index');
-    Route::get('basic-setting/create', [BasicSettingController::class, 'create'])->name('basic.setting.create');
-    Route::post('basic-setting', [BasicSettingController::class, 'store'])->name('basic.setting.store');
-    Route::get('basic-setting/edit/{slug}', [BasicSettingController::class, 'edit'])->name('basic.setting.edit');
-    Route::put('basic-setting/{slug}', [BasicSettingController::class, 'update'])->name('basic.setting.update');
-    Route::delete('basic-setting/{slug}', [BasicSettingController::class, 'destroy'])->name('basic.setting.destroy');
+    Route::post('basic-setting', [BasicSettingController::class, 'update'])->name('basic.setting.update');
 });
 
 require __DIR__.'/auth.php';

@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+
+use App\Models\BasicSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
         User::create([
             'name' => 'Admin',
             'email' => 'admin@mail.com',
@@ -25,6 +28,15 @@ class DatabaseSeeder extends Seeder
             'active' => '1',
             'slug' => 'U-2500',
             'password' => Hash::make('password'),
+        ]);
+
+        BasicSetting::create([
+            'basic_company' => '',
+            'basic_title' => '',
+            'basic_logo' => '',
+            'basic_flogo' => '',
+            'basic_favicon' => '',
+            'basic_status' => 1,
         ]);
     }
 }
