@@ -47,6 +47,7 @@ class TaxController extends Controller
 
         $insert = Tax::insertGetId([
             'tax_name' => $request->tax_name,
+            'tax_percent' => $request->tax_percent,
             'tax_remarks' => $request->tax_remarks,
             'tax_slug' => Str::slug($request->tax_name, '-'),
             'tax_status' => 1,
@@ -79,9 +80,10 @@ class TaxController extends Controller
      * @param  \App\Models\Tax  $tax
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tax $tax)
+    public function edit($slug)
     {
-        //
+        $data = Tax::where('tax_status', 1)->where('tax_slug', $slug)->firstOrFail();
+        return view('tax.edit', compact('data'));
     }
 
     /**
@@ -91,9 +93,29 @@ class TaxController extends Controller
      * @param  \App\Models\Tax  $tax
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tax $tax)
+    public function update(Request $request, $slug)
     {
-        //
+        $this->validate($request,[
+            'tax_name' => ['required', 'string', 'max:255'],
+        ],[
+            'tax_name.required' => "Enter Your Name",
+        ]);
+        $id = $request->tax_id;
+        $update = Tax::where('tax_status', 1)->where('tax_slug', $slug)->where('tax_id', $id)->update([
+            'tax_name' => $request->tax_name,
+            'tax_percent' => $request->tax_percent,
+            'tax_remarks' => $request->tax_remarks,
+            'tax_slug' => Str::slug($request->tax_name, '-'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if ($update) {
+            Session::flash('success', 'Tax Updated successfully');
+            return redirect()->route('tax.index');
+        } else {
+            Session::flash('error', 'Tax Updated Failed!');
+            return redirect()->route('tax.index');
+        }
     }
 
     /**
@@ -102,8 +124,17 @@ class TaxController extends Controller
      * @param  \App\Models\Tax  $tax
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tax $tax)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = Tax::where('tax_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Tax Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Tax Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
