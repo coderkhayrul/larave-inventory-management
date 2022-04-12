@@ -16,7 +16,7 @@
                         <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Sell Unit</li>
+                                <li class="breadcrumb-item active">Tax</li>
                             </ol>
                         </div>
                     </div>
@@ -27,9 +27,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header bg-dark d-flex justify-content-between">
-                            <h4 class="card-text pt-1 mb-0 text-light">All Sell Unit</h4>
-                            <a href="{{ route('sell.unit.create') }}" class="btn btn-primary"><i
-                                    class="bx bx-plus-medical"></i> Add Sell Unit</a>
+                            <h4 class="card-text pt-1 mb-0 text-light">All Tax Information</h4>
+                            <a href="{{ route('tax.create') }}" class="btn btn-primary"><i
+                                    class="bx bx-plus-medical"></i> Add Tax</a>
                         </div>
                         <div class="card-body">
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -40,8 +40,8 @@
                                             role="grid" aria-describedby="datatable_info" style="width: 1016px;">
                                             <thead>
                                                 <tr role="row">
-                                                    <th rowspan="1" colspan="1">Purchase Unit</th>
-                                                    <th rowspan="1" colspan="1">Name</th>
+                                                    <th rowspan="1" colspan="1">Tax Name</th>
+                                                    <th rowspan="1" colspan="1">Percentage</th>
                                                     <th rowspan="1" colspan="1">Remarks</th>
                                                     <th rowspan="1" colspan="1">Action</th>
                                                 </tr>
@@ -49,9 +49,9 @@
                                             <tbody>
                                                 @foreach ($datas as $data)
                                                 <tr>
-                                                    <td>{{ $data->purchase_unit->pu_name }}</td>
-                                                    <td>{{ $data['su_name'] }}</td>
-                                                    <td>{{ $data['su_remarks'] }}</td>
+                                                    <td>{{ $data['tax_name'] }}</td>
+                                                    <td>{{ $data['tax_percent'] }}</td>
+                                                    <td>{{ $data['tax_remarks'] }}</td>
 
                                                     <td class="text-center">
                                                         <div class="btn-group" role="group">
@@ -64,13 +64,13 @@
                                                             <div class="dropdown-menu"
                                                                 aria-labelledby="btnGroupVerticalDrop1" style="">
                                                                 <a class="dropdown-item text-primary btn-link"
-                                                                    href="{{ route('sell.unit.edit',$data->su_slug) }}">
+                                                                    href="{{ route('tax.edit',$data->tax_slug) }}">
                                                                     <i class="dripicons-document-edit"></i> Edit</a>
 
                                                                 <a class="dropdown-item text-primary btn-link delete-modal"
-                                                                    href="{{ route('sell.unit.destroy',$data->su_slug) }}"
+                                                                    href="{{ route('tax.destroy',$data->tax_slug) }}"
                                                                     data-bs-toggle="modal"
-                                                                    data-value="{{ $data->su_id }}"
+                                                                    data-value="{{ $data->tax_id }}"
                                                                     data-bs-target="#deleteModal"> <i
                                                                         class="dripicons-trash"></i> Delete</a>
                                                             </div>
@@ -93,7 +93,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <form
-                                                                    action="{{ route('sell.unit.destroy', $data->su_slug) }}"
+                                                                    action="{{ route('tax.destroy', $data->tax_slug) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('DELETE')
