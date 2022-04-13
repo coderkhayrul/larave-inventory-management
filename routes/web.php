@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\PurchaseUnitController;
 use App\Http\Controllers\SellUnitController;
+use App\Http\Controllers\SocialSettingController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UserController;
@@ -131,9 +132,13 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::put('tax/{slug}', [TaxController::class, 'update'])->name('tax.update');
     Route::delete('tax/{slug}', [TaxController::class, 'destroy'])->name('tax.destroy');
 
-    // SOCIAL MEDIA LIST
+    // BASIC SETTING ROUTE LIST
     Route::get('basic-setting', [BasicSettingController::class, 'index'])->name('basic.setting.index');
     Route::post('basic-setting', [BasicSettingController::class, 'update'])->name('basic.setting.update');
+
+    // SOCIAL SETTING ROUTE LIST
+    Route::get('social-setting', [SocialSettingController::class, 'index'])->name('social.setting.index');
+    Route::post('social-setting', [SocialSettingController::class, 'update'])->name('social.setting.update');
 });
 
 require __DIR__.'/auth.php';

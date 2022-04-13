@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\BasicSetting;
+use App\Models\SocialSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -37,6 +38,11 @@ class DatabaseSeeder extends Seeder
             'basic_flogo' => '',
             'basic_favicon' => '',
             'basic_status' => 1,
+        ]);
+
+        SocialSetting::create([
+            'sm_facebook' => '',
+            'sm_status' => 1,
         ]);
     }
 }
