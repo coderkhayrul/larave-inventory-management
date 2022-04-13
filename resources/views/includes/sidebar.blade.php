@@ -196,7 +196,7 @@
                         <li><a href="#">General Setting</a></li>
                         <li><a href="{{ route('basic.setting.index') }}">Basic Setting</a></li>
                         <li><a href="{{ route('social.setting.index') }}">Social Information</a></li>
-                        <li><a href="#">Contact Information</a></li>
+                        <li><a href="{{ route('contact.info.index') }}">Contact Information</a></li>
                         <li><a href="#">Mail Setting</a></li>
                         <li><a href="#">Reward Point Setting</a></li>
                         <li><a href="#">SMS Setting</a></li>

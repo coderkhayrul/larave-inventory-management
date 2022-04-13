@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BasicSettingController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ContactInfoController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
 use App\Http\Controllers\PdfController;
@@ -139,6 +140,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     // SOCIAL SETTING ROUTE LIST
     Route::get('social-setting', [SocialSettingController::class, 'index'])->name('social.setting.index');
     Route::post('social-setting', [SocialSettingController::class, 'update'])->name('social.setting.update');
+
+    // SOCIAL SETTING ROUTE LIST
+    Route::get('contact-info', [ContactInfoController::class, 'index'])->name('contact.info.index');
+    Route::post('contact-info', [ContactInfoController::class, 'update'])->name('contact.info.update');
 });
 
 require __DIR__.'/auth.php';

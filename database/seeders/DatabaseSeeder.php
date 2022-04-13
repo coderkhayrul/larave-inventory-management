@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\BasicSetting;
+use App\Models\ContactInfo;
 use App\Models\SocialSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -32,17 +33,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         BasicSetting::create([
-            'basic_company' => '',
-            'basic_title' => '',
-            'basic_logo' => '',
-            'basic_flogo' => '',
-            'basic_favicon' => '',
             'basic_status' => 1,
         ]);
 
         SocialSetting::create([
-            'sm_facebook' => '',
             'sm_status' => 1,
+        ]);
+
+        ContactInfo::create([
+            'cont_status' => 1,
         ]);
     }
 }
