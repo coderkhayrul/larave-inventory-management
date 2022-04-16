@@ -64,7 +64,7 @@
                         <span key="t-expense">Expense</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Expense Category</a></li>
+                        <li><a href="{{ route('expense.category.index') }}">Expense Category</a></li>
                         <li><a href="#">Expense List</a></li>
                         <li><a href="#">Add Expense</a></li>
 

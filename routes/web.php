@@ -7,7 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactInfoController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
-use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\PurchaseUnitController;
@@ -142,6 +142,15 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('biller/edit/{slug}', [BillerController::class, 'edit'])->name('biller.edit');
     Route::put('biller/{slug}', [BillerController::class, 'update'])->name('biller.update');
     Route::delete('biller/{slug}', [BillerController::class, 'destroy'])->name('biller.destroy');
+
+    // EXPENSE CATEGORY ROUTE LIST
+    Route::get('expense/category', [ExpenseCategoryController::class, 'index'])->name('expense.category.index');
+    Route::get('expense/category/create', [ExpenseCategoryController::class, 'create'])->name('expense.category.create');
+    Route::post('expense/category', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
+    Route::post('expense/category/{slug}', [ExpenseCategoryController::class, 'show'])->name('expense.category.show');
+    Route::get('expense/category/edit/{slug}', [ExpenseCategoryController::class, 'edit'])->name('expense.category.edit');
+    Route::put('expense/category/{slug}', [ExpenseCategoryController::class, 'update'])->name('expense.category.update');
+    Route::delete('expense/category/{slug}', [ExpenseCategoryController::class, 'destroy'])->name('expense.category.destroy');
 
 
     // BASIC SETTING ROUTE LIST
