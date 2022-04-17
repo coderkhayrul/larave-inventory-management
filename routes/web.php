@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BasicSettingController;
+use App\Http\Controllers\BillerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactInfoController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
-use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\PurchaseUnitController;
@@ -127,12 +128,31 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::delete('/sell/unit/{slug}', [SellUnitController::class, 'destroy'])->name('sell.unit.destroy');
 
     // TAX ROUTE LIST
-    Route::get('tax', [TaxController::class, 'index'])->name('tax.index');
+    Route::get('taxs', [TaxController::class, 'index'])->name('tax.index');
     Route::get('tax/create', [TaxController::class, 'create'])->name('tax.create');
     Route::post('tax', [TaxController::class, 'store'])->name('tax.store');
     Route::get('tax/edit/{slug}', [TaxController::class, 'edit'])->name('tax.edit');
     Route::put('tax/{slug}', [TaxController::class, 'update'])->name('tax.update');
     Route::delete('tax/{slug}', [TaxController::class, 'destroy'])->name('tax.destroy');
+
+    // BILLER ROUTE LIST
+    Route::get('billers', [BillerController::class, 'index'])->name('biller.index');
+    Route::get('biller/create', [BillerController::class, 'create'])->name('biller.create');
+    Route::post('biller', [BillerController::class, 'store'])->name('biller.store');
+    Route::post('biller/{slug}', [BillerController::class, 'show'])->name('biller.show');
+    Route::get('biller/edit/{slug}', [BillerController::class, 'edit'])->name('biller.edit');
+    Route::put('biller/{slug}', [BillerController::class, 'update'])->name('biller.update');
+    Route::delete('biller/{slug}', [BillerController::class, 'destroy'])->name('biller.destroy');
+
+    // EXPENSE CATEGORY ROUTE LIST
+    Route::get('expense/category', [ExpenseCategoryController::class, 'index'])->name('expense.category.index');
+    Route::get('expense/category/create', [ExpenseCategoryController::class, 'create'])->name('expense.category.create');
+    Route::post('expense/category', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
+    Route::post('expense/category/{slug}', [ExpenseCategoryController::class, 'show'])->name('expense.category.show');
+    Route::get('expense/category/edit/{slug}', [ExpenseCategoryController::class, 'edit'])->name('expense.category.edit');
+    Route::put('expense/category/{slug}', [ExpenseCategoryController::class, 'update'])->name('expense.category.update');
+    Route::delete('expense/category/{slug}', [ExpenseCategoryController::class, 'destroy'])->name('expense.category.destroy');
+
 
     // BASIC SETTING ROUTE LIST
     Route::get('basic-setting', [BasicSettingController::class, 'index'])->name('basic.setting.index');

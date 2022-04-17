@@ -64,7 +64,7 @@
                         <span key="t-expense">Expense</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Expense Category</a></li>
+                        <li><a href="{{ route('expense.category.index') }}">Expense Category</a></li>
                         <li><a href="#">Expense List</a></li>
                         <li><a href="#">Add Expense</a></li>
 
@@ -141,8 +141,8 @@
                         <li><a href="{{ route('user.create') }}">Add User</a></li>
                         <li><a href="{{ route('customer.index') }}">Customer List</a></li>
                         <li><a href="{{ route('customer.create') }}">Add Customer</a></li>
-                        <li><a href="#">Biller List</a></li>
-                        <li><a href="#">Add Biller</a></li>
+                        <li><a href="{{ route('biller.index') }}">Biller List</a></li>
+                        <li><a href="{{ route('biller.create') }}">Add Biller</a></li>
                         <li><a href="{{ route('supplier.index') }}">Supplier List</a></li>
                         <li><a href="{{ route('supplier.create') }}">Add Supplier</a></li>
                     </ul>
