@@ -86,9 +86,10 @@ class ExpenseCategoryController extends Controller
      * @param  \App\Models\ExpenseCategory  $expenseCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ExpenseCategory $expenseCategory)
+    public function edit(ExpenseCategory $expenseCategory, $slug)
     {
-        //
+        $data = ExpenseCategory::where('expcate_status', 1)->where('expcate_slug', $slug)->firstOrFail();
+        return view('expense.category.edit', compact('data'));
     }
 
     /**
@@ -98,9 +99,36 @@ class ExpenseCategoryController extends Controller
      * @param  \App\Models\ExpenseCategory  $expenseCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExpenseCategory $expenseCategory)
+    public function update(Request $request, $slug)
     {
-        //
+        $this->validate($request,[
+            'expcate_name' => ['required', 'string', 'max:255'],
+            'expcate_code' => ['required', 'string', 'max:255'],
+        ],[
+            'expcate_name.required' => "Enter Your Name",
+            'expcate_code.required' => "Select Code Category",
+        ]);
+
+        $editor = Auth::user()->id;
+        $id = $request->expcate_id;
+        $insert = ExpenseCategory::where('expcate_status', 1)
+            ->where('expcate_slug', $slug)
+            ->where('expcate_id', $id)
+            ->update([
+                'expcate_code' => $request->expcate_code,
+                'expcate_name' => $request->expcate_name,
+                'expcate_remarks' => $request->expcate_remarks,
+                'expcate_creator' => $editor,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+
+        if ($insert) {
+            Session::flash('success', 'Expense Category Updated successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Expense Category Updated Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -109,8 +137,17 @@ class ExpenseCategoryController extends Controller
      * @param  \App\Models\ExpenseCategory  $expenseCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExpenseCategory $expenseCategory)
+    public function destroy(Request $request, $slug)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = ExpenseCategory::where('expcate_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Expense Category Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Expense Category Delete Failed!');
+            return redirect()->back();
+        }
     }
 }

@@ -16,7 +16,7 @@
                         <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Expense</li>
+                                <li class="breadcrumb-item active">Expense Category</li>
                             </ol>
                         </div>
                     </div>
@@ -40,7 +40,6 @@
                                     <div class="col-md-6">
                                         <div class="form-group pb-2">
                                             <label><strong>Code <span class="text-danger">*</span></strong> </label>
-                                            {{-- <input type="text" name="expcate_code" class="form-control @error('expcate_code') is-invalid @enderror" value="{{ old('expcate_code') }}"> --}}
                                             <div class="input-group mb-3">
                                                 <input type="text" id="code_output" name="expcate_code" class="form-control @error('expcate_code') is-invalid @enderror">
                                                 <button class="btn btn-outline-primary" type="button" id="expcate_generated">Generate</button>
