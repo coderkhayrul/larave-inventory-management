@@ -183,7 +183,7 @@
                         <li><a href="#">Descount Plan</a></li>
                         <li><a href="#">Discount</a></li>
                         <li><a href="#">Send Notification</a></li>
-                        <li><a href="#">Warehouse</a></li>
+                        <li><a href="{{ route('warehouse.index') }}">Warehouse</a></li>
                         <li><a href="{{ route('customer.group.index') }}">Customer Group</a></li>
                         <li><a href="{{ route('brand.index') }}">Brand</a></li>
                         <li><a href="{{ route('purchase.unit.index') }}">Purchase Unit</a></li>

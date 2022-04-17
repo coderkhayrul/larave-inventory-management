@@ -15,6 +15,7 @@ use App\Http\Controllers\SocialSettingController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WareHouseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -144,6 +145,16 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     // SOCIAL SETTING ROUTE LIST
     Route::get('contact-info', [ContactInfoController::class, 'index'])->name('contact.info.index');
     Route::post('contact-info', [ContactInfoController::class, 'update'])->name('contact.info.update');
+
+
+    // WAREHOUSE ROUTE LIST
+    Route::get('warehouse', [WareHouseController::class, 'index'])->name('warehouse.index');
+    Route::get('warehouse/create', [WareHouseController::class, 'create'])->name('warehouse.create');
+    Route::post('warehouse', [WareHouseController::class, 'store'])->name('warehouse.store');
+    Route::get('warehouse/edit/{slug}', [WareHouseController::class, 'edit'])->name('warehouse.edit');
+    Route::put('warehouse/{slug}', [WareHouseController::class, 'update'])->name('warehouse.update');
+    Route::delete('warehouse/{slug}', [WareHouseController::class, 'destroy'])->name('warehouse.destroy');
+
 });
 
 require __DIR__.'/auth.php';
