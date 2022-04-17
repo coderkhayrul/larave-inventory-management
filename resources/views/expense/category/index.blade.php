@@ -93,7 +93,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <form
-                                                                    action="{{ route('expsnse.category.destroy', $data->expcate_slug) }}"
+                                                                    action="{{ route('expense.category.destroy',$data->expcate_slug) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('DELETE')

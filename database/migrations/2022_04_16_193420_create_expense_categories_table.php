@@ -17,9 +17,9 @@ class CreateExpenseCategoriesTable extends Migration
             $table->bigIncrements('expcate_id');
             $table->string('expcate_name')->unique();
             $table->string('expcate_code')->unique();
-            $table->string('expcate_remarks');
-            $table->integer('expcate_creator');
-            $table->integer('expcate_editor');
+            $table->string('expcate_remarks')->nullable();
+            $table->integer('expcate_creator')->nullable();
+            $table->integer('expcate_editor')->nullable();
             $table->string('expcate_slug')->unique();
             $table->string('expcate_status')->default(1);
             $table->timestamps();

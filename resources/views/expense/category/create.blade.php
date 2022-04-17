@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header bg-dark d-flex justify-content-between">
                             <h4 class="pt-1 mb-0 text-light">Create Expense Category</h4>
-                            <a href="{{ route('expense.category.create') }}" class="btn btn-primary btn-sm">All Expense Category</a>
+                            <a href="{{ route('expense.category.index') }}" class="btn btn-primary btn-sm">All Expense Category</a>
                         </div>
 
                         <div class="card-body">
@@ -93,7 +93,6 @@
                     for ( let i = 0; i < length; i++ ) {
                         result += characters.charAt(Math.floor(Math.random() * charactersLength));
                     }
-
                     return result;
                 }
                 var result = generateString(8);

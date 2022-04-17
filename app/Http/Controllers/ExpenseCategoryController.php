@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ExpenseCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ExpenseCategoryController extends Controller
 {
@@ -36,7 +40,33 @@ class ExpenseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'expcate_name' => ['required', 'string', 'max:255'],
+            'expcate_code' => ['required', 'string', 'max:255'],
+        ],[
+            'expcate_name.required' => "Enter Your Name",
+            'expcate_code.required' => "Select Code Category",
+        ]);
+
+        $creator = Auth::user()->id;
+        $slug = 'EC' . uniqid();
+        $insert = ExpenseCategory::insertGetId([
+            'expcate_code' => $request->expcate_code,
+            'expcate_name' => $request->expcate_name,
+            'expcate_remarks' => $request->expcate_remarks,
+            'expcate_creator' => $creator,
+            'expcate_slug' => $slug,
+            'expcate_status' => 1,
+            'created_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if ($insert) {
+            Session::flash('success', 'Expense Category Created successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Expense Category Created Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
