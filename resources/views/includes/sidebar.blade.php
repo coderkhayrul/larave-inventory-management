@@ -16,6 +16,13 @@
                 </li>
 
                 <li>
+                    <a href="#" class="waves-effect">
+                        <i class="bx bxs-trash-alt"></i>
+                        <span>Recycle Bin</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-list-ul"></i>
                         <span key="t-ecommerce">Product</span>
@@ -124,7 +131,7 @@
                         <span key="t-return">HRM</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Department</a></li>
+                        <li><a href="{{ route('department.index') }}">Department</a></li>
                         <li><a href="#">Employee</a></li>
                         <li><a href="#">Attendance</a></li>
                         <li><a href="#">Payroll</a></li>

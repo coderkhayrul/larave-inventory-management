@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactInfoController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerGroupController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductTypeController;
@@ -174,6 +175,14 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::get('warehouse/edit/{slug}', [WareHouseController::class, 'edit'])->name('warehouse.edit');
     Route::put('warehouse/{slug}', [WareHouseController::class, 'update'])->name('warehouse.update');
     Route::delete('warehouse/{slug}', [WareHouseController::class, 'destroy'])->name('warehouse.destroy');
+
+    // DEPARTMENT ROUTE LIST
+    Route::get('department', [DepartmentController::class, 'index'])->name('department.index');
+    Route::get('department/create', [DepartmentController::class, 'create'])->name('department.create');
+    Route::post('department', [DepartmentController::class, 'store'])->name('department.store');
+    Route::get('department/edit/{slug}', [DepartmentController::class, 'edit'])->name('department.edit');
+    Route::put('department/{slug}', [DepartmentController::class, 'update'])->name('department.update');
+    Route::delete('department/{slug}', [DepartmentController::class, 'destroy'])->name('department.destroy');
 
 });
 
