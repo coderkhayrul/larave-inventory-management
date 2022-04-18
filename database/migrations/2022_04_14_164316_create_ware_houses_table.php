@@ -19,8 +19,8 @@ class CreateWareHousesTable extends Migration
             $table->string('wh_phone')->unique();
             $table->string('wh_email')->nullable();
             $table->string('wh_address')->nullable();
-            $table->integer('wh_create');
-            $table->integer('wh_editor');
+            $table->integer('wh_create')->nullable();
+            $table->integer('wh_editor')->nullable();
             $table->string('wh_slug')->unique();
             $table->string('wh_status')->default(1);
             $table->timestamps();
