@@ -40,14 +40,13 @@
                                             role="grid" aria-describedby="datatable_info" style="width: 1016px;">
                                             <thead>
                                                 <tr role="row">
-                                                    <th rowspan="1" colspan="1" style="width: 152px;">Customer Group
+                                                    <th rowspan="1" colspan="1">Customer Group
                                                     </th>
-                                                    <th rowspan="1" colspan="1" style="width: 200px;">Name</th>
-                                                    <th rowspan="1" colspan="1" style="width: 115px;">Company Name</th>
-                                                    <th rowspan="1" colspan="1" style="width: 55px;">Email</th>
-                                                    <th rowspan="1" colspan="1" style="width: 108px;">Phone</th>
-                                                    <th rowspan="1" colspan="1" style="width: 89px;">Address</th>
-                                                    <th rowspan="1" colspan="1" style="width: 89px;">Action</th>
+                                                    <th rowspan="1" colspan="1">Name</th>
+                                                    <th rowspan="1" colspan="1">Company Name</th>
+                                                    <th rowspan="1" colspan="1">Phone</th>
+                                                    <th rowspan="1" colspan="1">Address</th>
+                                                    <th rowspan="1" colspan="1">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -56,7 +55,6 @@
                                                     <td>{{ $data->cgroup->cg_name }}</td>
                                                     <td>{{ $data['customer_name'] }}</td>
                                                     <td>{{ $data['customer_company'] }}</td>
-                                                    <td>{{ $data['customer_email'] }}</td>
                                                     <td>{{ $data['customer_phone'] }}</td>
                                                     <td>{{ $data['customer_address'] }}</td>
 

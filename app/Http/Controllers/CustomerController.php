@@ -171,10 +171,12 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $slug)
+    public function destroy(Request $request)
     {
         $id = $request['delete_data'];
-        $delete = Customer::where('customer_id', $id)->delete();
+        $delete = Customer::where('customer_id', $id)->where('customer_status', 1)->update([
+            'customer_status' => 0
+        ]);
 
         if ($delete) {
             Session::flash('success', 'Customer Delete successfully');

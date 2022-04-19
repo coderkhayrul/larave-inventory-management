@@ -25,7 +25,7 @@
             <!-- end page title -->
             <div class="row">
                 @php
-                    $users = App\Models\User::where('active', 0)->get();
+                    $users = App\Models\User::where('status', 0)->get();
                 @endphp
                 <div class="col-md-3">
                     <a href="">

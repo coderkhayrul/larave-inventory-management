@@ -43,7 +43,6 @@
                                                     <th rowspan="1" colspan="1" style="width: 200px;">Email</th>
                                                     <th rowspan="1" colspan="1" style="width: 115px;">Phone</th>
                                                     <th rowspan="1" colspan="1" style="width: 55px;">Role</th>
-                                                    <th rowspan="1" colspan="1" style="width: 108px;">Stauts</th>
                                                     <th rowspan="1" colspan="1" style="width: 89px;">Action</th>
                                                 </tr>
                                             </thead>
@@ -54,13 +53,6 @@
                                                     <td>{{ $data['email'] }}</td>
                                                     <td>{{ $data['phone'] }}</td>
                                                     <td>{{ $data['role'] }}</td>
-                                                    <td>
-                                                        @if ($data['active'])
-                                                        <span class="badge badge-pill badge-soft-success font-size-11">Active</span>
-                                                        @else
-                                                        <span class="badge badge-pill badge-soft-danger font-size-11">Desible</span>
-                                                        @endif
-                                                    </td>
                                                     <td class="text-center">
                                                         <div class="btn-group" role="group">
                                                             <button id="btnGroupVerticalDrop1" type="button" class="btn btn-sm btn-outline-primary waves-effect waves-light" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
