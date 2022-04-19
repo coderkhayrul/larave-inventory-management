@@ -12,6 +12,7 @@ use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\PurchaseUnitController;
+use App\Http\Controllers\RecycleBinController;
 use App\Http\Controllers\SellUnitController;
 use App\Http\Controllers\SocialSettingController;
 use App\Http\Controllers\SupplierController;
@@ -184,6 +185,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
     Route::put('department/{slug}', [DepartmentController::class, 'update'])->name('department.update');
     Route::delete('department/{slug}', [DepartmentController::class, 'destroy'])->name('department.destroy');
 
+    // RECYCLEBIN ROUTE LIST
+    Route::get('recycle-bin', [RecycleBinController::class, 'index'])->name('recycle.bin.index');
 });
 
 require __DIR__.'/auth.php';

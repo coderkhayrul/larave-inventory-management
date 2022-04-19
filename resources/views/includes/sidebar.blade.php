@@ -16,8 +16,8 @@
                 </li>
 
                 <li>
-                    <a href="#" class="waves-effect">
-                        <i class="bx bxs-trash-alt"></i>
+                    <a href="{{ route('recycle.bin.index') }}" class="waves-effect">
+                        <i class="text-danger bx bxs-trash-alt"></i>
                         <span>Recycle Bin</span>
                     </a>
                 </li>

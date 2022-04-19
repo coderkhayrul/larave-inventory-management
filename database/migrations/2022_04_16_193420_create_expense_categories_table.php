@@ -21,7 +21,7 @@ class CreateExpenseCategoriesTable extends Migration
             $table->integer('expcate_creator')->nullable();
             $table->integer('expcate_editor')->nullable();
             $table->string('expcate_slug')->unique();
-            $table->string('expcate_status')->default(1);
+            $table->integer('expcate_status')->default(1);
             $table->timestamps();
         });
     }
